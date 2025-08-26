@@ -1,0 +1,1 @@
+/* function that return remainder when divident is divided to divisor not using modulus operator*/
