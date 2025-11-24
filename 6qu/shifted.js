@@ -10,3 +10,4 @@ function shiftedDiff(first, second) {
   // convert left-rotation index to right-rotation count
   return leftIndex === 0 ? 0 : first.length - leftIndex;
 }
+console.log(shiftedDiff('coffee','eecoff')) //2

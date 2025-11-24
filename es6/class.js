@@ -23,6 +23,6 @@ class Human extends Person{
 }
 //creating instances of both parents and child class
 const evarist = new Person("evariste",20)
-const some = new Human(2,'someone',20)
-some.speak()
-console.log(some.age)
+const child = new Human(2,'someone',20)
+child.speak()
+console.log(child.age)

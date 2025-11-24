@@ -1,7 +1,7 @@
 const transformed = (users)=>{
     let result = {};
     for(const {id,name} of users){
-        result[id]=name
+        result[name]=id
     }
     return result;
 }
