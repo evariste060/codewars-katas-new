@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //question 1
+         const printNumber = async ()=>{
+            let counter = 0
+            const delay = ms =>  new Promise(resolve=>setTimeout(()=>resolve(),ms))
+            await delay(2000)
+            console.log(++counter)
+            await( delay(2000))
+            console.log(++counter)
+            await delay(1000)
+            return 'Done'
+        }
+        //printNumber().then(r=>console.log(r))
+        //question 2
+        async function getData(url){
+            const controller = new AbortController();
+            const signal = controller.signal;
+            const id = setTimeout(()=>controller.abort(),10)
+            const response =  await fetch(url,{signal})
+            clearTimeout(id)
+           return response.json()
+        }
+        getData("https://api.github.com/users/octocat")
+        .then(data=>console.log(`Data Is here :${data.name}`))
+        .catch(error=>console.log(`Error:${error}`))
+
+
+
+        
+    </script>
+    
+</body>
+</html>
