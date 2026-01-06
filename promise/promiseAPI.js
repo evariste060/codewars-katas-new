@@ -9,6 +9,6 @@ let requests = urls.map(url => fetch(url));
 
 // Promise.all waits until all jobs are resolved
 Promise.all(requests)
-.then(response=> console.log(response))
+//.then(response=> console.log(response))
 
   

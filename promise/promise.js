@@ -12,7 +12,7 @@ fetchData(2000)
 .then((values)=>{console.log(values); return userLogin()})
 .then((values=>console.log(values)))
 .catch(error=>console.log(error))
-.finally(()=> {new error('Whoops')})
+.finally(()=> {new Error('Whoops')})
 //get the use ID
 //find the Information on the user
 //post the

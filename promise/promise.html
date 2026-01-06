@@ -7,22 +7,15 @@
 </head>
 <body>
     <script>
-        getCoffe()
-        singSong()
-        function getCoffe(){
-            console.log('Getting coffe...');
-            doSynStuff()
-            console.log("Coffe is Here!")
-
-        }
-        function singSong(){
-            console.log("Start Singing!")
-        }
-        function doSynStuff(){
-            setTimeout(()=>{console.log("brother")},20003)
-
-        }
+    async function displayGithubUsers(names) {
+        let promises = names.map(name => 
+            fetch(`https://api.github.com/users/${name}`).then(r => r.json())
+        );
+        return Promise.all(promises); 
+    }
+ 
     </script>
+        
     <script src="promiseAPI.js"></script>
     
 </body>

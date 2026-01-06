@@ -26,6 +26,7 @@
             const id = setTimeout(()=>controller.abort(),10)
             const response =  await fetch(url,{signal})
             clearTimeout(id)
+            console.log('Helll')
            return response.json()
         }
         getData("https://api.github.com/users/octocat")
