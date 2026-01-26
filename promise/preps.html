@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+async function fetchUsers() {
+  try {
+    let names = ['iliakan', 'theogene120', 'evariste060','cynthia-stac'];
+
+    let requests = names.map(name =>
+      fetch(`https://api.github.com/users/${name}`)
+    );
+
+    let responses = await Promise.all(requests);
+
+    for (let response of responses) {
+      console.log(response);
+    }
+
+    let users = await Promise.all(
+      responses.map(response => response.json())
+    );
+
+    users.forEach(user => {
+      let img = document.createElement('img');
+      img.src = user.avatar_url;
+      img.alt = user.name;
+      img.width = 200;
+      document.body.append(img);
+    });
+
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+fetchUsers();
+
+
+
+
+  </script>
+  
+</body>
+</html>

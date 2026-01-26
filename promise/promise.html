@@ -6,15 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script>
-    async function displayGithubUsers(names) {
-        let promises = names.map(name => 
-            fetch(`https://api.github.com/users/${name}`).then(r => r.json())
-        );
-        return Promise.all(promises); 
-    }
- 
-    </script>
+
         
     <script src="promiseAPI.js"></script>
     

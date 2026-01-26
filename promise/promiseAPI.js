@@ -1,14 +1,19 @@
-let urls = [
-  'https://api.github.com/users/iliakan',
-  'https://api.github.com/users/remy',
-  'https://api.github.com/users/jeresig'
-];
-
-// map every url to the promise of the fetch
-let requests = urls.map(url => fetch(url));
-
-// Promise.all waits until all jobs are resolved
-Promise.all(requests)
-//.then(response=> console.log(response))
+async function fetchUserTodos(){
+  const urls = [' https://jsonplaceholder.typicode.com/users'
+    ,'https://jsonplaceholder.typicode.com/todos'
+  ]
+  let requests = await  Promise.all(urls.map(url=>fetch(url)));
+  let responses = await Promise.all(requests.map(response=>response.json()));
+  let result = {}
+  for(let user of responses[0]){
+    result.name = user.name 
+    result.id = user.id
+    result.todos = responses[1].filter(u=>u.id===result.id)
+  }
+  return result
+  
+  
+}
+console.log(fetchUserTodos())
 
   
