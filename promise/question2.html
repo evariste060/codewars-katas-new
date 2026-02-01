@@ -6,28 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <p id="title"></p>
-    <p id="body"></p>
     <script>
-        let urls = [
-            "https://dummyjson.com/posts",
-            "https://this-may-not-exist.com/posts",
-            "https://jsonplaceholder.typicode.com/posts"
-        ]
-        async function getFastPost(urls){
-            let requests = await Promise.any(urls.map(url=>fetch(url)))
-            console.log(requests)
-            let response = await requests.json()
-        //console.log(response)
-            let title = document.getElementById('title')
-            for(let t of posts){
-                console.log(t)
-                let element = document.createElement('p')
-                element.textContent = t.title
-                title.append(element)
-            }
-        }
-        getFastPost(urls)
+       let urls = [
+    "https://dummyjson.com/posts",
+    "https://this-may-not-exist.com/posts",
+    "https://jsonplaceholder.typicode.com/posts"
+]
+
+async function getFastPost(urls){
+    let requests = await Promise.any(urls.map(url => fetch(url)))
+    let post = await requests.json()
+    return post 
+}
+getFastPost(urls).then((posts) => { 
+    //console.log(posts) 
+    for(const {id,title} of posts){
+    console.log(id,title)
+    }
+})
     </script>
 </body>
 </html>

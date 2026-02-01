@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       async function fetchWithRetry(url,_,retries = 3){ 
+       try {
+         const response = await fetch(url);
+         if(!response.ok) throw new error('HTTP error! status:',response.status);
+         return await response.json();
+       } catch (error) {
+        if(retries>0){
+            console.log('Retrying.....');
+            fetchWithRetry(url,_,retries-1)
+        }
+        throw error
+       }
+       }
+       fetchWithRetry('https://jsonplaceholder.typicod.com/todos/1',10)
+       .then(data=>console.log('Data: ',data))
+       .catch(error=>console.log(`Network Error ${error}`))
+    </script>
+    
+</body>
+</html>

@@ -20,29 +20,42 @@
         }
         //printNumber().then(r=>console.log(r))
         //question 2
+         function fetchWithTimeout(url,timeout){
+            const controller = new Controller()
+            const signal = controller.signal;
+            let timerId = setTimeout(()=>controller.abort(),timeout);
+            try {
+                let response = await(fetch(url,{signal}))
+                clearTimeout(timerId)
+                return response.json()
+            } catch (error) {
+                if(error.name==='AbortError'){
+                    console.error("Request aborted due to timeout")
+
+                }
+                else{
+                    throw error
+                }
+            }
+        }
         async function getData(url){
             const controller = new AbortController();
             const signal = controller.signal;
             const id = setTimeout(()=>controller.abort('it takes too long'),10)
-            const response =  await fetch(url,{signal})
-            clearTimeout(id)
-            console.log('Helll')
-           return response.json()
+            try {
+                const response =  await fetch(url,{signal})
+                clearTimeout(id)
+                return response.json()
+            }
+             catch (error) {
+                if(Error.name='AbortError') throw new Error("Request aborted");
+                throw error;
+                
+            }
         }
-        try {
         getData("https://api.github.com/users/Evariste060")
         .then(data=>console.log(`Data Is here :${data.name}`))
-        .catch(error=>console.log(`Errorrrrr:${error}`))
-            
-        } catch (error) {
-            console.log("Errorrrrrr")
-            
-        }
-        
-
-
-
-        
+        .catch(error=>console.log(`${error.name}`))  
     </script>
     
 </body>

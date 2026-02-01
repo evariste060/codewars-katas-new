@@ -1,18 +1,4 @@
-function userLogin(){
-    return new Promise((resolve,reject)=>{
-        setTimeout(resolve('You login Successfully!'))
-    })
+function add(num1,num2,num3){
+    console.log(num1+num2+num3)
 }
-function fetchData(ms){
-    return new Promise((resolve,reject)=>{
-        setTimeout(resolve("Data fetched Successfully!"),ms);
-    })
-}
-fetchData(2000)
-.then((values)=>{console.log(values); return userLogin()})
-.then((values=>console.log(values)))
-.catch(error=>console.log(error))
-.finally(()=> {new Error('Whoops')})
-//get the use ID
-//find the Information on the user
-//post the
+setTimeout(add,100,1,2,3)
