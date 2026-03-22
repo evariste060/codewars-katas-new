@@ -17,6 +17,5 @@ function validBraces(braces) {
       }
     }
   }
-
   return stack.length === 0;
 }
